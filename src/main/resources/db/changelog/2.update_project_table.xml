@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.7.xsd">
+    <changeSet author="Jiri Hermann" id="01_update_project_columns">
+        <sql>
+            ALTER TABLE project ALTER COLUMN project_identifier TYPE VARCHAR(6);
+        </sql>
+    </changeSet>
+    <changeSet author="Jiri Hermann" id="02_update_project_columns">
+        <sql>
+            ALTER TABLE PROJECT ADD CONSTRAINT unique_project_identifier UNIQUE(project_identifier);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

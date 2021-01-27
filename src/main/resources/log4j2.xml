@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="10" packages="com.adastragrp.mdd.backend">
+    <Properties>
+        <Property name="layout">%d{yyyy-MM-dd HH:mm:ss.SSS}{UTC}|%nano|${hostName}|%thread|%.-5level|%X{req.method}|%X{req.uri}|%mdc{Correlation-Id}|%X{Message-Id}|%mdc{systemUserId}|%mdc{hcpay.user}|%logger{44}|%replace{%msg}{pin=\d+|"pin":"\d+"}{pin='xxxx'}%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console_appender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layout}"/>
+        </Console>
+
+        <RollingFile name="app_appender" append="false" filename="../log/application_backend.log"
+                     filepattern="./backend/log/application_backend_%d{yyyyMMddHHmmss}.zip">
+            <PatternLayout pattern="${layout}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="console_appender"/>
+        </Root>
+
+        <Logger name="org.springframework" level="debug">
+            <AppenderRef ref="console_appender"/>
+        </Logger>
+
+        <Logger name="org.hibernate.engine" level="warn">
+            <AppenderRef ref="console_appender"/>
+        </Logger>
+
+        <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug">
+            <AppenderRef ref="console_appender"/>
+        </Logger>
+
+    </Loggers>
+</Configuration>
