@@ -30,7 +30,7 @@ public class Auditable<U> {
 
     @CreatedDate
     @Column(name = "created_at")
-    private Date createdDate;
+    private Date createdAt;
 
     @LastModifiedBy
     @Column(name = "updated_by")
@@ -38,5 +38,5 @@ public class Auditable<U> {
 
     @LastModifiedDate
     @Column(name = "updated_at")
-    private Date updatedDate;
+    private Date updatedAt;
 }
